@@ -13,7 +13,6 @@ public class UserToken {
     public User getUser() {
         return this.user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
@@ -21,7 +20,6 @@ public class UserToken {
     public String getHash() {
         return this.hash;
     }
-
     public void setHash(String hash) {
         this.hash = hash;
     }

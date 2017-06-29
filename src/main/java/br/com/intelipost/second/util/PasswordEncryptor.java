@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PasswordEncryptor {
 
-    //Choose the prefered password encryption
+    //Choose the preferred password encryption
     public String encrypt(String original) {
         return new StringBuilder(original).reverse().toString();
     }
