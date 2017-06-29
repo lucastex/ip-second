@@ -36,9 +36,8 @@ public class LoginController {
 
         try {
             UserToken userToken = loginService.login(username, password);
-            model.addAttribute("token", userToken.getHash());
             httpSession.setAttribute("token", userToken.getHash());
-            return "login/dashboard";
+            return "redirect:/dashboard";
         } catch (LoginNotFoundException loginNotFoundException) {
             model.addAttribute("username", loginNotFoundException.getUsername());
             return "login/error";
