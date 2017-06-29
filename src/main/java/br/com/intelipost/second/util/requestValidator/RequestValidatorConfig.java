@@ -9,12 +9,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RequestValidatorConfig {
 
-
+    @Bean
     public RequestValidator getSessionRequestValidator() {
         return new SessionRequestValidator();
     }
-    
-    @Bean
+
+    //@Bean
     public RequestValidator getCookieRequestValidator() {
         return new CookieRequestValidator();
     }
