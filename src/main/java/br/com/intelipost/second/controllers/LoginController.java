@@ -3,6 +3,7 @@ package br.com.intelipost.second.controllers;
 import br.com.intelipost.second.LoginNotFoundException;
 import br.com.intelipost.second.domain.UserToken;
 import br.com.intelipost.second.services.LoginService;
+import br.com.intelipost.second.util.requestValidator.RequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by lucastex on 28/06/17.
@@ -23,8 +25,7 @@ public class LoginController {
     private LoginService loginService;
 
     @Autowired
-    private HttpSession httpSession;
-
+    private RequestValidator requestValidator;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String form() {
@@ -32,11 +33,11 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String process(@RequestParam String username, @RequestParam String password, Model model) {
+    public String process(@RequestParam String username, @RequestParam String password, Model model, HttpServletRequest request, HttpServletResponse response) {
 
         try {
             UserToken userToken = loginService.login(username, password);
-            httpSession.setAttribute(UserToken.TOKEN, userToken.getHash());
+            requestValidator.validate(userToken, request, response);
             return "redirect:/dashboard";
         } catch (LoginNotFoundException loginNotFoundException) {
             model.addAttribute("username", loginNotFoundException.getUsername());
@@ -47,17 +48,15 @@ public class LoginController {
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String dashboard(Model model) {
 
-        String token = (String) httpSession.getAttribute(UserToken.TOKEN);
-        model.addAttribute(UserToken.TOKEN, token);
         return "login/dashboard";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout() {
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
 
-        String token = (String) httpSession.getAttribute(UserToken.TOKEN);
+        String token = requestValidator.invalidate(request, response);
         loginService.logout(token);
-        httpSession.invalidate();
+
         return "login/logout";
     }
 }
