@@ -15,10 +15,10 @@ import org.springframework.stereotype.Service;
 public class LoginService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    PasswordEncryptor passwordEncryptor;
+    private PasswordEncryptor passwordEncryptor;
 
     public UserToken login(String username, String password) throws LoginNotFoundException {
 

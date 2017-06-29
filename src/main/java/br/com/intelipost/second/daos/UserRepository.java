@@ -22,7 +22,7 @@ import java.util.UUID;
 public class UserRepository {
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     @Transactional(readOnly=true)
     public User findUserByCredentials(String username, String hashedPassword) throws LoginNotFoundException {
