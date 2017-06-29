@@ -36,7 +36,7 @@ public class LoginController {
 
         try {
             UserToken userToken = loginService.login(username, password);
-            httpSession.setAttribute("token", userToken.getHash());
+            httpSession.setAttribute(UserToken.TOKEN, userToken.getHash());
             return "redirect:/dashboard";
         } catch (LoginNotFoundException loginNotFoundException) {
             model.addAttribute("username", loginNotFoundException.getUsername());
@@ -47,15 +47,15 @@ public class LoginController {
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String dashboard(Model model) {
 
-        String token = (String) httpSession.getAttribute("token");
-        model.addAttribute("token", token);
+        String token = (String) httpSession.getAttribute(UserToken.TOKEN);
+        model.addAttribute(UserToken.TOKEN, token);
         return "login/dashboard";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout() {
 
-        String token = (String) httpSession.getAttribute("token");
+        String token = (String) httpSession.getAttribute(UserToken.TOKEN);
         loginService.logout(token);
         httpSession.invalidate();
         return "login/logout";

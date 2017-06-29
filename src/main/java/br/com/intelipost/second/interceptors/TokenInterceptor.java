@@ -1,5 +1,6 @@
 package br.com.intelipost.second.interceptors;
 
+import br.com.intelipost.second.domain.UserToken;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,7 +18,7 @@ public class TokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
 
         HttpSession session = request.getSession();
-        String token = (String) session.getAttribute("token");
+        String token = (String) session.getAttribute(UserToken.TOKEN);
 
         if (token == null) {
             response.sendRedirect("/");

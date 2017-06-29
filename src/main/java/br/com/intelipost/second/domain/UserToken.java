@@ -5,6 +5,8 @@ package br.com.intelipost.second.domain;
  */
 public class UserToken {
 
+    public static final String TOKEN = "token";
+
     private User user;
     private String hash;
 
