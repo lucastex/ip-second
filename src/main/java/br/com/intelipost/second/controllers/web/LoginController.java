@@ -1,4 +1,4 @@
-package br.com.intelipost.second.controllers;
+package br.com.intelipost.second.controllers.web;
 
 import br.com.intelipost.second.LoginNotFoundException;
 import br.com.intelipost.second.domain.UserToken;
