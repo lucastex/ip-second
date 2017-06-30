@@ -18,8 +18,12 @@ public class InterceptorsConfig extends WebMvcConfigurerAdapter {
     @Autowired
     private RestTokenInterceptor restTokenInterceptor;
 
+    @Autowired
+    private LinkInterceptor linkInterceptor;
+
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(webTokenInterceptor).addPathPatterns("/dashboard");
+        registry.addInterceptor(linkInterceptor).addPathPatterns("/dashboard");
         registry.addInterceptor(restTokenInterceptor).addPathPatterns("/api/**");
     }
 }
