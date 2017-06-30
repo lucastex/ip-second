@@ -48,7 +48,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public String dashboard(Model model) {
+    public String dashboard() {
 
         return "login/dashboard";
     }
