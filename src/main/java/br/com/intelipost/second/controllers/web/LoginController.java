@@ -29,11 +29,6 @@ public class LoginController {
     @Qualifier("webRequestValidator")
     private RequestValidator requestValidator;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String form() {
-        return "login/form";
-    }
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String process(@RequestParam String username, @RequestParam String password, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 
@@ -45,12 +40,6 @@ public class LoginController {
             redirectAttributes.addFlashAttribute("message", loginNotFoundException.getMessage());
             return "redirect:/";
         }
-    }
-
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public String dashboard() {
-
-        return "login/dashboard";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
