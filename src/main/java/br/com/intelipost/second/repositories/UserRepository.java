@@ -1,4 +1,4 @@
-package br.com.intelipost.second.daos;
+package br.com.intelipost.second.repositories;
 
 import br.com.intelipost.second.LoginNotFoundException;
 import br.com.intelipost.second.domain.User;

@@ -1,6 +1,6 @@
 package br.com.intelipost.second.services;
 
-import br.com.intelipost.second.daos.UserRepository;
+import br.com.intelipost.second.repositories.UserRepository;
 import br.com.intelipost.second.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package br.com.intelipost.second.services;
 
 import br.com.intelipost.second.LoginNotFoundException;
-import br.com.intelipost.second.daos.UserRepository;
+import br.com.intelipost.second.repositories.UserRepository;
 import br.com.intelipost.second.domain.User;
 import br.com.intelipost.second.domain.UserToken;
 import br.com.intelipost.second.util.PasswordEncryptor;
