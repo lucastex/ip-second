@@ -2,7 +2,6 @@ package br.com.intelipost.second.repositories;
 
 import br.com.intelipost.second.LoginNotFoundException;
 import br.com.intelipost.second.domain.User;
-import br.com.intelipost.second.domain.UserToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,9 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by lucastex on 28/06/17.
@@ -46,6 +43,7 @@ public class UserRepository {
         return user;
     }
 
+    @Transactional(readOnly = true)
     public List<User> listUsers() {
         List<User> users = jdbcTemplate.query("select * from USER",
                 new RowMapper<User>() {
@@ -62,6 +60,7 @@ public class UserRepository {
         return users;
     }
 
+    @Transactional(readOnly = true)
     public User findById(Long id) {
 
         User user = jdbcTemplate.query(
