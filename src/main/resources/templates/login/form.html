@@ -1,35 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>Intelipost</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"  />
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
-        <style>
-            body { padding-top: 40px; padding-bottom: 40px; background-color: #eee; font-family: 'Roboto', sans-serif; }
-            .form-signin { max-width: 330px; padding: 15px; margin: 0 auto; }
-            .form-signin .form-signin-heading, .form-signin .checkbox { margin-bottom: 10px; }
-            .form-signin .checkbox { font-weight: normal; }
-            .form-signin .form-control { position: relative; height: auto; -webkit-box-sizing: border-box; box-sizing: border-box; padding: 10px; font-size: 16px; }
-            .form-signin .form-control:focus { z-index: 2; }
-            .form-signin input[type="email"] { margin-bottom: -1px; border-bottom-right-radius: 0; border-bottom-left-radius: 0; }
-            .form-signin input[type="password"] { margin-bottom: 10px; border-top-left-radius: 0; border-top-right-radius: 0; }
-        </style>
+        <link href="/stylesheets/form.css" rel="stylesheet" />
     </head>
     <body>
+        <div id="flash-message" class="alert alert-success" role="alert" th:if="${message}" th:text="${message}"></div>
         <div class="container">
+            <h1>Case Intelipost</h1>
             <form class="form-signin" action="/login" method="post">
                 <label for="inputEmail" class="sr-only">Email address</label>
-                <input name="username" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus" />
+                <input name="username" type="email" id="inputEmail" class="form-control" placeholder="email" required="required" autofocus="autofocus" />
                 <label for="inputPassword" class="sr-only">Password</label>
-                <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="required" />
+                <input name="password" type="password" id="inputPassword" class="form-control" placeholder="password" required="required" />
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
         </div>
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
     </body>
 </html>

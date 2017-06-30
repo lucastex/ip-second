@@ -8,7 +8,7 @@ public class LoginNotFoundException extends Exception {
     private String username;
 
     public LoginNotFoundException(String username) {
-        super("O usuário [" + username + "] não foi encontrado");
+        super("Usuário [" + username + "] não encontrado");
         this.username = username;
     }
 

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,15 +36,15 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String process(@RequestParam String username, @RequestParam String password, Model model, HttpServletRequest request, HttpServletResponse response) {
+    public String process(@RequestParam String username, @RequestParam String password, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 
         try {
             UserToken userToken = loginService.login(username, password);
             requestValidator.validate(userToken, request, response);
             return "redirect:/dashboard";
         } catch (LoginNotFoundException loginNotFoundException) {
-            model.addAttribute("username", loginNotFoundException.getUsername());
-            return "login/error";
+            redirectAttributes.addFlashAttribute("message", loginNotFoundException.getMessage());
+            return "redirect:/";
         }
     }
 
@@ -54,11 +55,11 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
+    public String logout(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response) {
 
         String token = requestValidator.invalidate(request, response);
         loginService.logout(token);
-
-        return "login/logout";
+        redirectAttributes.addFlashAttribute("message", "Você foi deslogado");
+        return "redirect:/";
     }
 }
