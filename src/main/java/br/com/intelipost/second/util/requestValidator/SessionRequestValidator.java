@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 public class SessionRequestValidator implements RequestValidator {
 
     @Override
-    public String isValid(HttpServletRequest httpRequest) {
+    public String isValid(HttpServletRequest httpRequest, HttpServletResponse httpResponse) {
 
         HttpSession session = httpRequest.getSession();
         String token = (String) session.getAttribute(UserToken.TOKEN);

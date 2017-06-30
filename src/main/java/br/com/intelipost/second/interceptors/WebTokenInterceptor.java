@@ -2,6 +2,7 @@ package br.com.intelipost.second.interceptors;
 
 import br.com.intelipost.second.util.requestValidator.RequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,15 +15,16 @@ import java.io.IOException;
  * Created by lucastex on 29/06/17.
  */
 @Component
-public class TokenInterceptor implements HandlerInterceptor {
+public class WebTokenInterceptor implements HandlerInterceptor {
 
     @Autowired
+    @Qualifier("webRequestValidator")
     private RequestValidator requestValidator;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
 
-        String token = requestValidator.isValid(request);
+        String token = requestValidator.isValid(request, response);
         if (token == null) {
             response.sendRedirect("/");
             return false;

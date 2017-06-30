@@ -13,9 +13,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class InterceptorsConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
-    private TokenInterceptor tokenInterceptor;
+    private WebTokenInterceptor webTokenInterceptor;
+
+    @Autowired
+    private RestTokenInterceptor restTokenInterceptor;
 
     public void addInterceptors(InterceptorRegistry registry){
-        registry.addInterceptor(tokenInterceptor).addPathPatterns("/dashboard");
+        registry.addInterceptor(webTokenInterceptor).addPathPatterns("/dashboard");
+        registry.addInterceptor(restTokenInterceptor).addPathPatterns("/api/**");
     }
 }

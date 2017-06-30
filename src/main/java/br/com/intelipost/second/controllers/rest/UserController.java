@@ -19,12 +19,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/users", method = RequestMethod.GET)
     public List<User> listUsers() {
         return userService.listUsers();
     }
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/users/{id}", method = RequestMethod.GET)
     public User getUser(@PathVariable Long id) {
         return userService.getUser(id);
     }

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CookieRequestValidator implements RequestValidator {
 
     @Override
-    public String isValid(HttpServletRequest httpRequest) {
+    public String isValid(HttpServletRequest httpRequest, HttpServletResponse httpResponse) {
 
         Cookie[] cookies = httpRequest.getCookies();
         for (Cookie ck : cookies) {
