@@ -1,5 +1,6 @@
 package br.com.intelipost.second.interceptors;
 
+import br.com.intelipost.second.services.UserTokenService;
 import br.com.intelipost.second.util.requestValidator.RequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,6 +22,9 @@ public class WebTokenInterceptor implements HandlerInterceptor {
     @Qualifier("webRequestValidator")
     private RequestValidator requestValidator;
 
+    @Autowired
+    private UserTokenService userTokenService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
 
@@ -30,7 +34,7 @@ public class WebTokenInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        return true;
+        return userTokenService.checkIfTokenIsValid(token);
     }
 
     @Override

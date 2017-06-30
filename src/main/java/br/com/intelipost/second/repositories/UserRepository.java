@@ -46,22 +46,6 @@ public class UserRepository {
         return user;
     }
 
-    public UserToken createNewToken(User user) {
-
-        String token = UUID.randomUUID().toString();
-        jdbcTemplate.update("insert into user_token (user_id, hash, login_date) values (?, ?, ?)", user.getId(), token, new Date());
-
-        UserToken userToken = new UserToken();
-        userToken.setUser(user);
-        userToken.setHash(token);
-
-        return userToken;
-    }
-
-    public void invalidateToken(String token) {
-        jdbcTemplate.update("update user_token set logout_date = ? where hash = ?", new Date(), token);
-    }
-
     public List<User> listUsers() {
         List<User> users = jdbcTemplate.query("select * from USER",
                 new RowMapper<User>() {
