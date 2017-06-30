@@ -1,18 +1,14 @@
 package br.com.intelipost.second.repositories;
 
-import br.com.intelipost.second.LoginNotFoundException;
+import br.com.intelipost.second.exception.LoginNotFoundException;
 import br.com.intelipost.second.domain.User;
 import br.com.intelipost.second.util.mappers.UserResultSetExtractor;
 import br.com.intelipost.second.util.mappers.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 /**

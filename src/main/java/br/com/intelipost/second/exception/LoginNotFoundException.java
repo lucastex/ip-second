@@ -1,4 +1,4 @@
-package br.com.intelipost.second;
+package br.com.intelipost.second.exception;
 
 /**
  * Created by lucastex on 28/06/17.
