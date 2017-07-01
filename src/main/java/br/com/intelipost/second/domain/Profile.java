@@ -44,4 +44,8 @@ public class Profile {
         links.add(link);
         return this;
     }
+
+    public boolean equals(Profile profile) {
+        return profile.getId().equals(id);
+    }
 }

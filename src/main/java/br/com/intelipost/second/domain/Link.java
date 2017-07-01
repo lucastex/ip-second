@@ -32,4 +32,9 @@ public class Link {
     public void setPath(String path) {
         this.path = path;
     }
+
+    public boolean equals(Link link) {
+        return link.getId().equals(id);
+    }
+
 }
