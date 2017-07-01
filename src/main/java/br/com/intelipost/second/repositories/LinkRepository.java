@@ -21,10 +21,6 @@ public class LinkRepository {
     @Autowired
     private LinkRowMapper linkRowMapper;
 
-    public List<Link> findLinksByProfile(Profile profile) {
-        return jdbcTemplate.query("select l.* from link l, link_profile lp where l.id = lp.link_id and lp.profile_id = ?;", new Object[]{profile.getId()}, linkRowMapper);
-    }
-
     public List<Link> findLinksByToken(String token) {
         return jdbcTemplate.query("select l.* from link l, link_profile lp, user_profile up, user_token ut where l.id = lp.link_id and lp.profile_id = up.profile_id and up.user_id = ut.user_id and ut.hash = ?;", new Object[]{ token }, linkRowMapper);
     }
