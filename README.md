@@ -33,6 +33,10 @@ Para evitar o custo do servidor web estar respondendo a arquivos estáticos, os 
 
 Os únicos assets da aplicação são 2 folhas de estilo (css) que estão dentro da aplicação, mas não estão sendo servidas pelo servidor, uma vez que o AWS CloudFront está configurado para este domínio com um `Cache Behaviour` específico para o path `domain/stylesheets/*`. Desta maneira, o CloudFront irá servir a partir dos seus edges este conteúdo enquato irá fazer um bypass das requisições que não derem um match neste pattern.
 
+### Hikari
+
+HikariCP foi o ConnectionPool escolhido pela sua ótima performance em ambientes de alta concorrência.
+
 ## Acessando a aplicação
 
 ### Web

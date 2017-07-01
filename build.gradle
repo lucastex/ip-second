@@ -29,5 +29,5 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile 'org.springframework.boot:spring-boot-devtools'
     compile 'com.github.ben-manes.caffeine:caffeine:2.5.2'
-
+    compile 'com.zaxxer:HikariCP:2.6.2'
 }
