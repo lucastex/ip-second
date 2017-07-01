@@ -25,7 +25,10 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-	runtime('mysql:mysql-connector-java')
+    compile('org.springframework.boot:spring-boot-starter-cache')
+    runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile 'org.springframework.boot:spring-boot-devtools'
+    compile 'com.github.ben-manes.caffeine:caffeine:2.5.2'
+
 }

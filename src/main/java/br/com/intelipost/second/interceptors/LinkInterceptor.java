@@ -33,7 +33,7 @@ public class LinkInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        List<Link> links = linkService.getLinksForUser(requestValidator.isValid(request, response));
+        List<Link> links = linkService.getLinksForToken(requestValidator.isValid(request, response));
         modelAndView.getModelMap().addAttribute("navLinks", links);
     }
 
