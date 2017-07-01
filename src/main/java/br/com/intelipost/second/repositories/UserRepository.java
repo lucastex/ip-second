@@ -33,7 +33,7 @@ public class UserRepository {
 
     @Transactional(readOnly = true)
     public List<User> listUsers() {
-        return jdbcTemplate.query("select * from USER", userRowMapper);
+        return jdbcTemplate.query("select * from user", userRowMapper);
     }
 
     @Transactional(readOnly = true)
